@@ -4,14 +4,14 @@ FROM node:14
 # Set the working directory inside the container
 WORKDIR /usr/src/node_express_app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Copy the package.json and package-lock.json from the server directory
+COPY ./server/package*.json ./
 
-# Install application dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the application files to the working directory
-COPY . .
+# Copy the rest of the Node.js app from the server directory
+COPY ./server ./
 
 # Command to run your application using nodemon
-CMD ["npx", "nodemon", "server.js"]
+CMD ["npm", "start"]
